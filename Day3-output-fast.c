@@ -2,15 +2,20 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-
+#define hi printf("hi\n");
 
 void readLines(char *fileName, char ***linesArray, int *size) {
     FILE *fp;
     fp = fopen(fileName, "r");
     *size = 0;
-    *linesArray = (char **)malloc(sizeof(char *) * 1000);
+    int linesAllocated = 10;
+    *linesArray = (char **)malloc(sizeof(char *) * linesAllocated);
     while (1) {
-        char line[100];
+        if (*size == linesAllocated) {
+            linesAllocated *= 2;
+            *linesArray = (char **)realloc(*linesArray, sizeof(char *) * linesAllocated);
+        }
+        char line[999];
         (*linesArray)[*size] = (char *)malloc(sizeof(char) * 100);
         if (!fgets(line, 999, fp)) {
             return;
@@ -21,6 +26,7 @@ void readLines(char *fileName, char ***linesArray, int *size) {
         }
         
         strcpy((*linesArray)[*size], line);
+        
         *size += 1;
     }
     fclose(fp);
@@ -190,6 +196,7 @@ int main() {
     char **lines;
     int linesNum;
     readLines("Day3-input.txt", &lines, &linesNum);
+    
     unsigned long long start, end;
     int iterations = 100000;
     
