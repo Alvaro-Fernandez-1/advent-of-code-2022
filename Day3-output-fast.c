@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+
 void readLines(char *fileName, char ***linesArray, int *size) {
     FILE *fp;
     fp = fopen(fileName, "r");
@@ -190,30 +191,44 @@ int main() {
     int linesNum;
     readLines("Day3-input.txt", &lines, &linesNum);
     unsigned long long start, end;
+    int iterations = 100000;
+    
+    //use volatile because apparently that prevents the compiler from optimizing the loop away
+    start = getMicros();
+    volatile int pt1s;
+    for (int i=0; i<iterations; i++) {
+        pt1s = part1Slow(lines, linesNum);
+    }
+    end = getMicros();
+    printf("Microseconds part 1 slow: %f\n", (float)(end - start) / iterations);
+    printf("Microseconds per line: %f\n\n", (float)(end - start) / iterations / linesNum);
     
     start = getMicros();
-    int pt1s = part1Slow(lines, linesNum);
+    volatile int pt2s;
+    for (int i=0; i<iterations; i++) {
+        pt2s = part2Slow(lines, linesNum);
+    }
     end = getMicros();
-    printf("Microseconds part 1 slow: %f\n", (float)(end - start));
-    printf("Microseconds per line: %f\n\n", (float)(end - start) / linesNum);
+    printf("Microseconds part 2 slow: %f\n", (float)(end - start) / iterations);
+    printf("Microseconds per line: %f\n\n", (float)(end - start) / iterations / linesNum);
     
     start = getMicros();
-    int pt2s = part2Slow(lines, linesNum);
+    volatile int pt1f;
+    for (int i=0; i<iterations; i++) {
+        pt1f = part1Fast(lines, linesNum);
+    }
     end = getMicros();
-    printf("Microseconds part 2 slow: %f\n", (float)(end - start));
-    printf("Microseconds per line: %f\n\n", (float)(end - start) / linesNum);
+    printf("Microseconds part 1 fast: %f\n", (float)(end - start) / iterations);
+    printf("Microseconds per line: %f\n\n", (float)(end - start) / iterations / linesNum);
     
     start = getMicros();
-    int pt1f = part1Fast(lines, linesNum);
+    volatile int pt2f;
+    for (int i=0; i<iterations; i++) {
+        pt2f = part2Fast(lines, linesNum);
+    }
     end = getMicros();
-    printf("Microseconds part 1 fast: %f\n", (float)(end - start));
-    printf("Microseconds per line: %f\n\n", (float)(end - start) / linesNum);
-    
-    start = getMicros();
-    int pt2f = part2Fast(lines, linesNum);
-    end = getMicros();
-    printf("Microseconds part 2 fast: %f\n", (float)(end - start));
-    printf("Microseconds per line: %f\n\n", (float)(end - start) / linesNum);
+    printf("Microseconds part 2 fast: %f\n", (float)(end - start) / iterations);
+    printf("Microseconds per line: %f\n\n", (float)(end - start) / iterations / linesNum);
 
     printf("\n");
     printf("Star 1: %d\n", pt1s);
