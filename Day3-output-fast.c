@@ -42,7 +42,8 @@ int getCharValue(char c) {
 }
 
 int charInString(char c, char *string) {
-    for (int i=0; i<(strlen(string)); i++) {
+    int len = strlen(string);
+    for (int i=0; i<len; i++) {
         if (c == string[i]) {
             return 1;
         }
@@ -56,8 +57,9 @@ int part1Slow(char **lines, int linesNum) {
         char *thisLine = lines[i];
         char common;
         
-        char *half2 = thisLine + strlen(thisLine)/2;
-        for (int j=0; j<strlen(thisLine)/2; j++) {
+        int halfLen = strlen(thisLine)/2;
+        char *half2 = thisLine + halfLen;
+        for (int j=0; j<halfLen; j++) {
             if (charInString(thisLine[j], half2)) {
                 common = thisLine[j];
             }
@@ -76,7 +78,8 @@ int part2Slow(char **lines, int linesNum) {
         char *line3 = lines[3*i+2];
         char common;
         
-        for (int j=0; j<strlen(line1); j++) {
+        int len1 = strlen(line1);
+        for (int j=0; j<len1; j++) {
             if (charInString(line1[j], line2) && charInString(line1[j], line3)) {
                 common = line1[j];
             }
@@ -134,10 +137,12 @@ int part1Fast(char **lines, int linesNum) {
         
         char *thisLine = lines[i];
 
-        for (int j=0; j<strlen(thisLine)/2; j++) {
+        int halfLen = strlen(thisLine)/2;
+        int len = halfLen*2;
+        for (int j=0; j<halfLen; j++) {
             set1[thisLine[j]] = 1;
         }
-        for (int j=strlen(thisLine)/2; j<strlen(thisLine); j++) {
+        for (int j=halfLen; j<len; j++) {
             set2[thisLine[j]] = 1;
         }
         
@@ -162,13 +167,16 @@ int part2Fast(char **lines, int linesNum) {
         char *line2 = lines[3*i+1];
         char *line3 = lines[3*i+2];
 
-        for (int j=0; j<strlen(line1); j++) {
+        int len1 = strlen(line1);
+        int len2 = strlen(line2);
+        int len3 = strlen(line3);
+        for (int j=0; j<len1; j++) {
             set1[line1[j]] = 1;
         }
-        for (int j=0; j<strlen(line2); j++) {
+        for (int j=0; j<len2; j++) {
             set2[line2[j]] = 1;
         }
-        for (int j=0; j<strlen(line3); j++) {
+        for (int j=0; j<len3; j++) {
             set3[line3[j]] = 1;
         }
         
