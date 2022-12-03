@@ -33,15 +33,6 @@ unsigned long long getMicros() {
     return tms.tv_sec * 1000000 + tms.tv_nsec/1000;
 }
 
-int getCharValue(char c) {
-    if (c >= 'a') {
-        return c-96;
-    }
-    else {
-        return c-64+26;
-    }
-}
-
 unsigned long long start, end;
 void startBenchmark() {
     start = getMicros();
