@@ -2,51 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-#define hi printf("hi\n");
-
-void readLines(char *fileName, char ***linesArray, int *size) {
-    FILE *fp;
-    fp = fopen(fileName, "r");
-    *size = 0;
-    int linesAllocated = 10;
-    *linesArray = (char **)malloc(sizeof(char *) * linesAllocated);
-    while (1) {
-        if (*size == linesAllocated) {
-            linesAllocated *= 2;
-            *linesArray = (char **)realloc(*linesArray, sizeof(char *) * linesAllocated);
-        }
-        char line[999];
-        (*linesArray)[*size] = (char *)malloc(sizeof(char) * 100);
-        if (!fgets(line, 999, fp)) {
-            return;
-        }
-        // don't want newline included in each line
-        if (line[strlen(line)-1] == '\n') {
-            line[strlen(line)-1] = '\0';
-        }
-        
-        strcpy((*linesArray)[*size], line);
-        
-        *size += 1;
-    }
-    fclose(fp);
-}
-
-//timing stuff
-struct timespec tms;
-unsigned long long getMicros() {
-    clock_gettime(CLOCK_MONOTONIC_RAW, &tms);
-    return tms.tv_sec * 1000000 + tms.tv_nsec/1000;
-}
-
-int getCharValue(char c) {
-    if (c >= 'a') {
-        return c-96;
-    }
-    else {
-        return c-64+26;
-    }
-}
+#include "c-advent-header.h"
 
 int charInString(char c, char *string) {
     int len = strlen(string);
@@ -196,47 +152,37 @@ int main() {
     char **lines;
     int linesNum;
     readLines("Day3-input.txt", &lines, &linesNum);
-    
-    unsigned long long start, end;
     int iterations = 100000;
     
     //use volatile because apparently that prevents the compiler from optimizing the loop away
-    start = getMicros();
+    startBenchmark();
     volatile int pt1s;
     for (int i=0; i<iterations; i++) {
         pt1s = part1Slow(lines, linesNum);
     }
-    end = getMicros();
-    printf("Microseconds part 1 slow: %f\n", (float)(end - start) / iterations);
-    printf("Microseconds per line: %f\n\n", (float)(end - start) / iterations / linesNum);
+    endBenchmark(iterations, linesNum, "part 1 slow");
     
-    start = getMicros();
+    startBenchmark();
     volatile int pt2s;
     for (int i=0; i<iterations; i++) {
         pt2s = part2Slow(lines, linesNum);
     }
-    end = getMicros();
-    printf("Microseconds part 2 slow: %f\n", (float)(end - start) / iterations);
-    printf("Microseconds per line: %f\n\n", (float)(end - start) / iterations / linesNum);
+    endBenchmark(iterations, linesNum, "part 2 slow");
     
-    start = getMicros();
+    startBenchmark();
     volatile int pt1f;
     for (int i=0; i<iterations; i++) {
         pt1f = part1Fast(lines, linesNum);
     }
-    end = getMicros();
-    printf("Microseconds part 1 fast: %f\n", (float)(end - start) / iterations);
-    printf("Microseconds per line: %f\n\n", (float)(end - start) / iterations / linesNum);
+    endBenchmark(iterations, linesNum, "part 1 fast");
     
-    start = getMicros();
+    startBenchmark();
     volatile int pt2f;
     for (int i=0; i<iterations; i++) {
         pt2f = part2Fast(lines, linesNum);
     }
-    end = getMicros();
-    printf("Microseconds part 2 fast: %f\n", (float)(end - start) / iterations);
-    printf("Microseconds per line: %f\n\n", (float)(end - start) / iterations / linesNum);
-
+    endBenchmark(iterations, linesNum, "part 2 fast");
+    
     printf("\n");
     printf("Star 1: %d\n", pt1s);
     printf("Star 2: %d\n", pt2s);
