@@ -4,6 +4,15 @@
 #include <time.h>
 #include "c-advent-header.h"
 
+int getCharValue(char c) {
+    if (c >= 'a') {
+        return c-96;
+    }
+    else {
+        return c-64+26;
+    }
+}
+
 int charInString(char c, char *string) {
     int len = strlen(string);
     for (int i=0; i<len; i++) {
