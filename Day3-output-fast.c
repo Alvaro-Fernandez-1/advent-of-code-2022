@@ -90,7 +90,7 @@ int part2Slow(char **lines, int linesNum) {
     return total;
 }
 
-void initSet(int *set) {
+void initSet(char *set) {
     for (int i=65; i<=90; i++) {
         set[i] = 0;
     }
@@ -99,7 +99,7 @@ void initSet(int *set) {
     }
 }
 
-char oneIntersectionTwo(int *set1, int *set2) {
+char oneIntersectionTwo(char *set1, char *set2) {
     for (int i=65; i<=90; i++) {
         if (set1[i] && set2[i]) {
             return i;
@@ -112,7 +112,7 @@ char oneIntersectionTwo(int *set1, int *set2) {
     }
 }
 
-char oneIntersectionThree(int *set1, int *set2, int *set3) {
+char oneIntersectionThree(char *set1, char *set2, char *set3) {
     for (int i=65; i<=90; i++) {
         if (set1[i] && set2[i] && set3[i]) {
             return i;
@@ -127,8 +127,8 @@ char oneIntersectionThree(int *set1, int *set2, int *set3) {
 
 int part1Fast(char **lines, int linesNum) {
     // only useful for this problem in particular
-    int set1[150];
-    int set2[150];
+    char set1[150];
+    char set2[150];
     
     int total = 0;
     for (int i=0; i<linesNum; i++) {
@@ -153,9 +153,9 @@ int part1Fast(char **lines, int linesNum) {
 
 int part2Fast(char **lines, int linesNum) {
     // only useful for this problem in particular
-    int set1[150];
-    int set2[150];
-    int set3[150];
+    char set1[150];
+    char set2[150];
+    char set3[150];
     
     int total = 0;
     for (int i=0; i<linesNum/3; i++) {
