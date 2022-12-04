@@ -9,6 +9,7 @@ Check each case except for loss (0 points) and add the corresponding result. In 
 
 ### Day 3
 This one felt better than yesterday. Using sets and then calculating their intersections to find the one element present in both halves of the line or in the three lines. Although I didn't know how to get the only element from the set so I googled it and found `(common,) = a.intersection(b)`. However `common = a.intersection(b).pop()` feels more natural. I lost time on googling that and even using sets at all. While using sets makes it O(n) where n is the number of characters per line, the slower O(n^2) alternative approach of going through every character in one string and checking `char in string2` is faster to type than sets. Also lost a bit of time by forgetting to set value to 0 after part 1. Got 5:58 for star 1, top 879, and 12:35 for star 2, top 1500. Top 100 1 star is 3:03 and 2 stars is 5:24.
+
 Day 4 edit: Just found out about how something like `set(str1).intersection(set(str2))` also computes the intersection. Definitely consider the possibility of casting to another type because of course python can probably do it.
 
 ### Day 4
