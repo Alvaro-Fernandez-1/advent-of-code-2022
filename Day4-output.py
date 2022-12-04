@@ -1,5 +1,5 @@
 lines = None
-with open("Day4-inputtest.txt") as f:
+with open("Day4-input.txt") as f:
     lines = f.readlines()
 
 for i in range(len(lines)):
