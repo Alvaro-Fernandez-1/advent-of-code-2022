@@ -22,3 +22,6 @@ As for the problem, parse everything and just do operations on a bunch of stacks
 
 ### Day 6
 I overslept so my times were 01:44:09 and 01:45:00. However I recorded this one and starting from the point where I open the problem my times are 4:05 and 4:55. Top 100 was 1:52, 2:25. My times were pretty slow considering how trivial today's problem was in python. No chance to use list comprehensions and maps either. Most of my time loss was reading because I wasn't sure if I got it right. For optimization in C I think I would take the char pointer, get a temp char variable, and in a for loop set the character 4 (or 14) positions later to 0 while saving it in temp, check if the current string has different characters, then set the 0 character to temp again and increase the pointer by 1.
+
+### Day 7
+Hardest day yet, but still straightforward. Also I'm not used to working with graphs. I can but I don't do it often. For this just build a tree and keep track of your position, add all the directories and files to the tree in your current position as you move, and then search it for whatever you need. Star 1 40:34, top 3528. Star 2 1:02:34, top 5013. Top 100 was 10:49, 14:47.
