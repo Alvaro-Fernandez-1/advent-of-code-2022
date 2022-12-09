@@ -25,3 +25,9 @@ I overslept so my times were 01:44:09 and 01:45:00. However I recorded this one 
 
 ### Day 7
 Hardest day yet, but still straightforward. Also I'm not used to working with graphs. I can but I don't do it often. For this just build a tree and keep track of your position, add all the directories and files to the tree in your current position as you move, and then search it for whatever you need. Star 1 40:34, top 3528. Star 2 1:02:34, top 5013. Top 100 was 10:49, 14:47.
+
+### Day 8
+Overslept again, but it took a while. Around 1 hour for star 1 and 1:21 for star 2. Top 100 was 4:30 and 10:12. I could have done it faster by checking everything up to each border in part 1, but I was afraid it would be too slow so instead I added a dictionary with info about the largest tree up to that point in all directions, so the next one would only have to check that. I'm going to relearn the basics of C++ that I learned about 5 years ago, then learn templates and whatever other features, and I'll switch from python to C++ because many people say it's the best language for this stuff due to being very fast and having a lot of standard library functions and classes. Also macros can shorten for loops and maybe other stuff.
+
+### Day 9
+For part 2 I got the wrong result and was looking for where the bug could be, and then I realized I was only taking 8 points after the head instead of 9. Star 1 20:21, star 2 50:49. Top 100 was 7:32 and 14:08. The concept was simple, first move the head according to the input and then move the tail according to where the head is and save the new position to a set and at the end print the length of the set. For a longer chain move the head the same as before and then every node after that moves according to the position of the previous node.
