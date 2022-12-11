@@ -34,3 +34,6 @@ For part 2 I got the wrong result and was looking for where the bug could be, an
 
 ### Day 10
 Pretty easy but I messed up a bit with the placement of the +1s at the beginning. I got 17:01 top 3119 and 29:17 top 2099. Top 100 was 5:17 and 12:17.
+
+### Day 11
+Part 2 was the first time this year that something wasn't straightforward. As always, just parse the input and do what this says. The stress levels in part 1 mever go too high, but in part 2 as soon as you stop dividing by 3 it goes wild. All that matters for the monkeys is if it's divisible by some number. For that all you need is the stress level modulo that number. To keep the info for all monkeys we can just multiply all their stress checks and use that as modulo to stop stress from crashing the python program or overflowing in a fixed length int. If there were 1000 monkeys that number would also be big, but then we could store the stress level as an array where the ith position is the stress modulo the ith monkey's stress check. I got 45:30, top 4042 and 56:09, top 2350. Top 100 was 13:07 and 18:05.
