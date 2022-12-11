@@ -31,3 +31,6 @@ Overslept again, but it took a while. Around 1 hour for star 1 and 1:21 for star
 
 ### Day 9
 For part 2 I got the wrong result and was looking for where the bug could be, and then I realized I was only taking 8 points after the head instead of 9. Star 1 20:21, star 2 50:49. Top 100 was 7:32 and 14:08. The concept was simple, first move the head according to the input and then move the tail according to where the head is and save the new position to a set and at the end print the length of the set. For a longer chain move the head the same as before and then every node after that moves according to the position of the previous node.
+
+### Day 10
+Pretty easy but I messed up a bit with the placement of the +1s at the beginning. I got 17:01 top 3119 and 29:17 top 2099. Top 100 was 5:17 and 12:17.
