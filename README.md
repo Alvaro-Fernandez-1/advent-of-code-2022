@@ -58,3 +58,24 @@ Part 1 is just a simulation. Part 2 took me a moment to think about what to do b
 
 ### Day 18
 I noticed that the input never goes past 25 in any coordinate so I made a 3d list with length 25 in every dimension and set every entry to False. Then for each cube made the entry corresponding its coordinate True and took the number of sides to be the number of cubes * 6. Then I went through every coordinate and checked the coordinates 1 more in each dimension. If both are a cube then remove 2 from sides. No need to check 1 less in each dimension because checking 1 more also checks 1 less of any of the potential cubes that come after. For part 2 I started in the coordinates 0,0,0 (and 25,25,25 just in case) knowing those are outside of the cubes and for each cube of air touching those, set them to -1 and check them later. When it's done then check the coordinates that are still set to False, check all the coordinates touching those and remove 1 side for each one. I got star 1 16:25 top 2200, star 2 33:05 top 1036. Top 100 was 2:55, 12:29.
+
+### Day 19
+I got stuck and had to unspoiler a discord message saying branch and bound works to even start doing anything. At first I thought it was another dynamic programming problem but I couldn't think of anything. I take a best of 0, then for each branch I check an upper bound with a quick heuristic and if it's lower than the current best then remove the branch. When I woke up I was stuck so I just went to sleep and did it later so I got 10:30:31 top 5007, 10:54:15 top 4150. Top 100 was 48:27, 57:45.
+
+### Day 20
+This was really easy, just a bit tricky in that going down to position 0 brings you to the end and going up to the end brings you to 0. Just use the modulus to get the new position. I got 32:48 top 663, 00:43:42 top 707. Top 100 was 15:41, 21:14.
+
+### Day 21
+I overslept again. In the first part I parsed all the monkeys so that they hold either numbers or operations. Then for each monkey I solve its operation by using the two monkeys it references. If one of the other monkeys also has an operation then solve that etc recursively. By the end all operations are solved. For part 2 I got a path from root to humn and calculated the number I needed in each step. I got 03:58:49 top 8156, 04:30:53 top 5840. Top 100 was 4:28, 16:15.
+
+### Day 22
+Part 1 was an easy simulation. Part 2 was a massive pain because I had to hardcode where all the edges go and the change of direction and had a sneaky bug that I couldn't find until I printed the entire jungle to a file and went step by step to see where it failed. I got 01:03:58 top 1664, 13:33:37 top 4764. Top 100 was 19:04, 01:14:31.
+
+### Day 23
+At this point I stopped waking up early because I can't get top 1 but also I'll stay at top 3 even if I'm missing a star. This one is just a simulation. First run it 10 steps then run it until nothing moves. I got 05:28:16 top 5635, 05:32:43 top 5400. Top 100 was 21:46, 24:43.
+
+### Day 24
+Another simulation without anything hard. I got 05:50:01 top 4423, 06:08:57 top 4273.
+
+### Day 25
+This one caught me by surprise. Part 1 was just making a function to transform from decimal to snafu and snafu to decimal, but part 2 was getting all previous stars so I couldn't get it because I don't have day 16 part 2 yet. This means Georgi can take top 2 from me when he decides to finish after he stopped in day 22 part 2, so I need to do finish day 16. I got 06:19:51, top 7050. Top 100 was 7:54, 08:30.
